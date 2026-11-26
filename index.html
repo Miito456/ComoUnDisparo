@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMO UN DISPARO — AISSA ft. NICKZZY | Experiencia Dinámica 3D</title>
+  <meta name="description"
+    content="Experiencia web dinámica y brutalista inspirada en 'Como un Disparo' de AISSA. Transiciones de color dinámicas, tipografía editorial, bala 3D animada por scroll y reproductor.">
+
+  <!-- Curated Font Palette: Anton (Hero), Unbounded (Brutalist Tech), Instrument Serif (Editorial Poetry), Space Grotesk (Modern Sans), Space Mono (Studio Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Three.js for 3D WebGL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="theme-morph" data-current-theme="hero">
+
+  <!-- 3D WebGL Canvas (Seamlessly fixed in background for 3D Pistol & Bullet) -->
+  <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
+
+  <!-- BALLISTIC SCROLL TELEMETRY HUD (Minimal editorial companion rail) -->
+  <aside class="bullet-hud" id="bullet-hud" aria-hidden="true">
+    <div class="hud-rail">
+      <div class="hud-progress-dot" id="hud-dot"></div>
+    </div>
+    <div class="hud-telemetry">
+      <span class="hud-mono hud-label">BALLISTIC COMPANION</span>
+      <span class="hud-mono hud-state" id="hud-status">IDLE // 0 M/S</span>
+      <span class="hud-mono hud-sec" id="hud-section">[00] HERO</span>
+    </div>
+  </aside>
+
+  <!-- TOP HEADER / NAV (Dynamic color-responsive navigation bar) -->
+  <header class="lamudita-header" id="main-header">
+    <div class="header-left">
+      <!-- Circular Stamp Logo -->
+      <a href="#hero" class="stamp-logo rotate-infinite" title="AISSA STUDIO">
+        <svg viewBox="0 0 100 100" class="circular-svg">
+          <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+          <text font-size="10.8" font-weight="900" letter-spacing="2.4">
+            <textPath href="#circlePath" startOffset="0%">
+              • AISSA STUDIO • COMO UN DISPARO • 2022
+            </textPath>
+          </text>
+        </svg>
+        <div class="stamp-icon">⚡</div>
+      </a>
+    </div>
+
+    <!-- Navigation Pills with dynamic contrast -->
+    <nav class="lamudita-nav">
+      <a href="#reproductor" class="nav-item item-boxed">AUDIO</a>
+      <a href="#cancion" class="nav-item item-bubble-down">TEMA</a>
+      <a href="#letra" class="nav-item item-speech-down">LETRA</a>
+      <a href="#artista" class="nav-item item-bubble-right">ARTISTA</a>
+      <a href="#reproductor" class="nav-item item-black-pill">ESCUCHAR [►]</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION: Pure Lamudita Vermillion (#ff3300) with Giant Stretched Typography -->
+    <section class="lamudita-hero color-section" id="hero" data-bg="#ff3300" data-text="#000000"
+      data-nav-mode="dark-elements">
+      <div class="lamudita-title-wrapper">
+        <!-- Giant Compressed Headline -->
+        <h1 class="lamudita-giant-title">
+          COMO UN DISPARO
+        </h1>
+
+        <!-- Overlapping Badges (Exact Lamudita composition) -->
+        <div class="hero-badge badge-pedidos-style" style="--rot: -8deg;">
+          <span>FT. NICKZZY</span>
+          <div class="badge-tail-left"></div>
+        </div>
+
+        <div class="hero-badge badge-reservas-style" style="--rot: 9deg;">
+          <span>¡PLA-PLA!</span>
+          <div class="badge-tail-right"></div>
+        </div>
+
+        <!-- Corner Stamp on the bottom right foot of the last letter -->
+        <div class="hero-corner-stamp">
+          <div class="corner-stamp-inner">
+            <span class="stamp-fist">✊</span>
+            <span class="stamp-text">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: REPRODUCTOR (Deep Asphalt Midnight Black: #0c0d0e — Modern Studio Tech Font: Unbounded) -->
+    <section class="minimal-section section-reproductor color-section" id="reproductor" data-bg="#0c0d0e"
+      data-text="#ffffff" data-nav-mode="light-elements">
+      <div class="section-top-bar">
+        <span class="sec-num">[01]</span>
+        <h2 class="sec-title">REPRODUCTOR</h2>
+        <span class="sec-tag">SPOTIFY & BEAT LAB</span>
+      </div>
+
+      <div class="player-minimal-grid">
+        <!-- Spotify Official Card -->
+        <div class="minimal-card card-dark">
+          <div class="card-bar">
+            <span>SPOTIFY OFFICIAL // 66uet4xls7K2lHSVYblCYw</span>
+            <span class="badge-verified">VERIFIED</span>
+          </div>
+          <div class="card-content">
+            <iframe style="border-radius:8px; border:2px solid rgba(255,255,255,0.2);"
+              src="https://open.spotify.com/embed/track/66uet4xls7K2lHSVYblCYw?utm_source=generator&theme=0"
+              width="100%" height="352" frameBorder="0" allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Clean Synthesizer / Beat Preview Card -->
+        <div class="minimal-card card-dark beat-card">
+          <div class="card-bar">
+            <span>AFRO-DRILL BEAT (108 BPM)</span>
+            <span id="live-indicator" class="badge-live">STANDBY</span>
+          </div>
+          <div class="card-content beat-content">
+            <div class="vinyl-minimal-box">
+              <div class="vinyl-disc" id="vinyl-disc">
+                <div class="vinyl-center">
+                  <span>DISPARO</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="beat-controls">
+              <button id="btn-toggle-beat" class="minimal-btn btn-neon">
+                <span id="beat-icon">▶</span>
+                <span id="beat-label">REPRODUCIR BEAT</span>
+              </button>
+              <div class="bpm-indicator">
+                <span>TEMPO: <strong>108 BPM</strong></span>
+                <span>TONO: <strong>F#m</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LETRA (Warm Editorial Cream / Ivory: #fff7ef — Poetic Font: Instrument Serif Italic) -->
+    <section class="minimal-section section-letra color-section" id="letra" data-bg="#fff7ef" data-text="#121212"
+      data-nav-mode="dark-elements">
+      <div class="section-top-bar">
+        <span class="sec-num">[02]</span>
+        <h2 class="sec-title">LETRA COMPLETA</h2>
+        <button id="btn-copy-lyrics" class="copy-pill-btn">COPIAR LETRA 📋</button>
+      </div>
+
+      <div class="lyrics-minimal-layout">
+        <div class="lyrics-scroll-card">
+          <!-- INTRO -->
+          <div class="lyrics-block">
+            <span class="stanza-label">INTRO // AISSA & NICKZZY</span>
+            <p class="lyric-line">Yeah, eh-eh</p>
+            <p class="lyric-line">(Dímelo, Aissa)</p>
+            <p class="lyric-line">Solo vinimos, primo, Aissa</p>
+            <p class="lyric-line">Oye, oye, dice...</p>
+          </div>
+
+          <!-- AISSA VERSE -->
+          <div class="lyrics-block">
+            <span class="stanza-label">VERSO 1 // AISSA</span>
+            <p class="lyric-line">Su combi de ropa son mortales, con el moño y los aros</p>
+            <p class="lyric-line">Es de esas que son especiales, por dónde ella se crió</p>
+            <p class="lyric-line">Los sujetos la tiran a pares, pero les dice siempre no</p>
+            <p class="lyric-line">Que a ella esos bobos nunca la valen, es lo que anoche me contó</p>
+            <p class="lyric-line">En su cama me cuenta que solo yo la molo</p>
+            <p class="lyric-line lyric-darija">No le gustan los payos, si es moro como yo</p>
+            <p class="lyric-line lyric-darija">La pongo como moto cuando en marroquí hablo</p>
+            <p class="lyric-line">Jura que nunca rompería nuestro amor</p>
+            <p class="lyric-line">Porque ella me jura que como a mi lado nunca se sintió</p>
+            <p class="lyric-line">Yo la llevo a la luna desde la una, hasta que sale el sol</p>
+            <p class="lyric-line">Me dice que lo cura, el amor que le doy la mata tanto</p>
+            <p class="lyric-line lyric-punch">Y cuando la beso se siente como un...</p>
+          </div>
+
+          <!-- CHORUS -->
+          <div class="lyrics-block chorus-block">
+            <span class="stanza-label chorus-badge">ESTRIBILLO ★</span>
+            <p class="lyric-line chorus-line">COMO UN DISPARO, PLA-PLA! (como un disparo)</p>
+            <p class="lyric-line chorus-line">Se siente como un disparo, como un disparo...</p>
+            <p class="lyric-line">Se siente cuando tenemos los labios pegados</p>
+          </div>
+
+          <!-- NICKZZY VERSE -->
+          <div class="lyrics-block">
+            <span class="stanza-label">VERSO 2 // NICKZZY</span>
+            <p class="lyric-line">Tiene a todos los tigres locos, pero el único que le ha gustado y enamorado</p>
+            <p class="lyric-line">Ella me tiene 'chizado</p>
+            <p class="lyric-line">Estuvo cuando no había nada, el billete y la fama nunca le han importado</p>
+            <p class="lyric-line">No sé qué ha pasado, creo que me he 'notizado</p>
+            <p class="lyric-line">Préndeme junto a la rama, pero es que sus besos me dejan noqueado</p>
+          </div>
+
+          <!-- OUTRO -->
+          <div class="lyrics-block">
+            <span class="stanza-label">OUTRO</span>
+            <p class="lyric-line chorus-line">Y suena un disparo, un disparo, como un disparo, un disparo...</p>
+            <p class="lyric-line">Como un disparo, como un disparo...</p>
+            <p class="lyric-line lyric-fade">Pla-pla... (fade out)</p>
+          </div>
+        </div>
+
+        <!-- Minimal Quote & Darija Dictionary -->
+        <div class="lyrics-sidebar-minimal">
+          <div class="minimal-card quote-minimal">
+            <p class="quote-text">
+              "Estuvo cuando no había nada, el billete y la fama nunca le han importado."
+            </p>
+            <span class="quote-author">— Aissa & Nickzzy</span>
+          </div>
+
+          <div class="minimal-card glossary-minimal">
+            <span class="glossary-title">GLOSARIO URBANO & DARIJA</span>
+            <ul class="glossary-items">
+              <li><strong>"Combi":</strong> Conjunto de ropa y outfit impecable.</li>
+              <li><strong>"Darija":</strong> Dialecto árabe marroquí nativo de Aissa.</li>
+              <li><strong>"Payos":</strong> Término urbano para no gitanos / no magrebíes.</li>
+              <li><strong>"'Chizado":</strong> Hechizado; flechazo fulminante.</li>
+              <li><strong>"Pla-Pla":</strong> El chasquido y el impacto ineludible.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CONTEXTO DEL TRACK (High-Energy Acid Yellow: #efff04 — Brutalist Monospaced Font: Space Mono + Unbounded) -->
+    <section class="minimal-section section-cancion color-section" id="cancion" data-bg="#efff04" data-text="#000000"
+      data-nav-mode="dark-elements">
+      <div class="section-top-bar">
+        <span class="sec-num">[03]</span>
+        <h2 class="sec-title">EL TEMA</h2>
+        <span class="sec-tag">FICHA & FUSIÓN</span>
+      </div>
+
+      <div class="context-minimal-grid">
+        <div class="minimal-card card-acid">
+          <span class="card-icon">⚡</span>
+          <h3 class="card-heading">MADRID × BILBAO</h3>
+          <p class="card-text">
+            Lanzada en marzo de 2022, la canción unió a dos de las voces más singulares de la música urbana española:
+            <strong>Aissa</strong> (Carabanchel, Madrid) y <strong>Nickzzy</strong> (Bilbao).
+          </p>
+        </div>
+
+        <div class="minimal-card card-acid">
+          <span class="card-icon">🥁</span>
+          <h3 class="card-heading">AFRO-DRILL ROMÁNTICO</h3>
+          <p class="card-text">
+            Producido por Ander Az & Sito a 108 BPM. Fusiona el patrón rítmico del drill con percusiones afrolatinas y
+            melodías arábigas con letras sobre lealtad callejera.
+          </p>
+        </div>
+
+        <div class="minimal-card card-acid">
+          <span class="card-icon">📈</span>
+          <h3 class="card-heading">IMPACTO EN REDES</h3>
+          <p class="card-text">
+            Superó los 20 millones de streams globales y se convirtió en tendencia viral en TikTok, consolidando el
+            sonido afro-español previo al éxito de <em>"Las Bratz Remix"</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: EL ARTISTA (Deep Velvet Charcoal / Terracotta: #161413 — Hybrid Editorial Font: Unbounded + Instrument Serif) -->
+    <section class="minimal-section section-artista color-section" id="artista" data-bg="#161413" data-text="#ffffff"
+      data-nav-mode="light-elements">
+      <div class="section-top-bar">
+        <span class="sec-num">[04]</span>
+        <h2 class="sec-title">AISSA ASLANI</h2>
+        <span class="sec-tag">CARABANCHEL, 1997</span>
+      </div>
+
+      <div class="artist-minimal-layout">
+        <div class="minimal-card card-dark-artist artist-card-main">
+          <h3 class="artist-big-name">AISSA ASLANI</h3>
+          <p class="artist-bio-text">
+            Hijo de padres marroquíes que emigraron a España, Aissa creció en el barrio madrileño de Carabanchel.
+            Tras trabajar en empleos precarios en Londres, regresó a España y utilizó el humor en redes sociales como
+            trampolín para financiar su verdadero objetivo vital: la música.
+          </p>
+          <div class="artist-milestones">
+            <div class="milestone-item">
+              <span class="m-year">2021</span>
+              <span class="m-desc">Lanza su álbum debut <strong>"African Lover"</strong>, fusionando afrobeat con
+                español.</span>
+            </div>
+            <div class="milestone-item">
+              <span class="m-year">2022</span>
+              <span class="m-desc">Consagra su éxito con <strong>"Como un Disparo"</strong> y el remix de <strong>"Las
+                  Bratz"</strong>.</span>
+            </div>
+            <div class="milestone-item">
+              <span class="m-year">2023</span>
+              <span class="m-desc">Presenta su segundo LP <strong>"Money No Love"</strong>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MINIMAL FOOTER: Pure Black (#000000) with Vermillion Accents -->
+  <footer class="minimal-footer color-section" data-bg="#000000" data-text="#ffffff" data-nav-mode="light-elements">
+    <div class="footer-inner">
+      <h2 class="footer-title">COMO UN DISPARO</h2>
+      <div class="footer-links">
+        <a href="https://open.spotify.com/track/66uet4xls7K2lHSVYblCYw" target="_blank" rel="noopener">SPOTIFY ↗</a>
+        <a href="https://www.youtube.com/results?search_query=aissa+como+un+disparo+nickzzy" target="_blank"
+          rel="noopener">YOUTUBE ↗</a>
+        <a href="https://www.instagram.com/aissa_aslani/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      </div>
+      <div class="footer-bottom">
+        <span>AISSA ft. NICKZZY • 2022 // DISEÑO DINÁMICO</span>
+        <a href="#hero" class="footer-top-btn">SUBIR AL INICIO ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
